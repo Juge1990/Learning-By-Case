@@ -1,4 +1,4 @@
-package com.mrz.log;
+package com.mrz.log.log4J;
 
 import org.apache.log4j.Logger;
 
