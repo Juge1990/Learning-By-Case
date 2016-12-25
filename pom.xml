@@ -3,4 +3,19 @@
   <groupId>mr.z</groupId>
   <artifactId>Learning-By-Cases</artifactId>
   <version>0.0.1</version>
+  <dependencies>
+  <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.17</version>
+	</dependency>
+  
+  	<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+	<dependency>
+    	<groupId>commons-logging</groupId>
+    	<artifactId>commons-logging</artifactId>
+    	<version>1.2</version>
+	</dependency>
+  </dependencies>
 </project>
