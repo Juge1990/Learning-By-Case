@@ -13,10 +13,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class ExecutorsThreadPoolDemo {
 	static Log log = LogFactory.getLog(ExecutorsThreadPoolDemo.class);
-	
-	public  ExecutorsThreadPoolDemo(){
-		super();
-	}
+
 	public static void main(String []agrs) throws InterruptedException, ExecutionException{
 		log.info("Main started");
 		ExecutorsThreadPoolDemo demo = new ExecutorsThreadPoolDemo();
@@ -30,6 +27,7 @@ public class ExecutorsThreadPoolDemo {
 		for(int i = 0; i<5; i++){
 			futures.add(service.submit(new Worker("A"+i)));
 		}
+		//如果不拿结果，就不会阻塞
 		for(Future<String> future: futures){
 			log.info(future.get());
 		}
