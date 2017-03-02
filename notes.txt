@@ -1,0 +1,77 @@
+ 虚拟机在哪儿（java.exe只是启动程序）
+ 热点编译（mixed mode, interpreted mode, compiled mode)
+ 
+ java -version
+ java -X
+ java -XX:+PrintFlagsFinal -version 
+ (java -XX:-UUseTLAB)
+ (java -XX:NewSize = 10m -version)
+ 
+ java -XX:+PrintFlagsFinal -version | findstr PrintFlags(查命令）
+ 
+ jps （展示java 虚拟机上运行的进程）
+ jstat -class 9720(进程id)
+ jstat -gc 9720
+ jstack [-1] <pid> 展示所有线程
+ 
+ jmap -dump:format=b, file=d:/eclipse.hprof 9720  展示9720进程的dump 文件
+ 
+ 
+ 
+ 哪些参数是推荐使用，哪些是不推荐使用？
+ 
+ jinfo -flag NewSize 9396 (查看9396 进程的NewSize 参数）
+ jinfo -flag NewSize=10m 9396(修改。。。。）
+ 
+ 热点编译（成机械码）的单元是方法
+ 
+ 双亲委派模型（安全，防止自定义加载器覆盖原始加载器）
+ 
+ -Xss2m （VM参数 把stack空间设为2M)
+ 
+ stack 多线程解决 Exception in thread "main" java.lang.StackOverflowError
+ 
+ doEscape（对象逃逸检查）
+ 
+ 虚拟机内存和java程序的关系
+ 
+ new 操作要加锁吗 Tlab？
+ 
+ 分段内存管理详解
+ 
+ Perm Gen 1.7后只保留类信息（方法，和属性（常亮））
+ 
+ FullGC是调优的重要标志，导致FullGC的原因是Perm Gen爆了
+ 
+ 离堆缓存
+ dump file when outofmemory.
+ 
+ FullGC 执行时程序会停掉，System.gc()掉用的是fullGC，-XX:+PrintGC/-XX:+PrintGCDetails可以看detail， 
+ fullGC可以被禁止掉: 
+ 
+ RMI，使用直接内存时不能用 FullGC. 租期。
+ 
+ 识别垃圾（两种方法），处理垃圾
+ 识别垃圾：
+ 强引用一定不会被回收
+ SoftReference在内存不够时会被回收（做catche）
+ weakReference 随时可能被回收 (用在集合类内的对象）
+ PhantomReference 当GC回收的时候，有一个消息发送到Queue对象中。
+ 
+ ReferenceQueue q = new ReferenceQueue();
+ PhantomReference<byte[]> sref = new PhantomReference(new byte[10*1224*1024],q);
+
+ SoftReference 用于做cache, 当内存不够时会被FullGC回收
+ SoftReference<byte[]> sref = new SoftReference(new byte[10*1224*1024]);
+ byte[] data =  sref.get();
+ 
+ 
+ GCAlgorithm：
+ 
+ ForkJoinPool Framework
+ 
+ 函数式变成： 1. 传值到传方法。 2. 多线程依赖太多
+ 
+ 
+ 
+ 
