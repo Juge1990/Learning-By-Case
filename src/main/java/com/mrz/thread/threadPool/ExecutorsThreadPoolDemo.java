@@ -14,22 +14,28 @@ import org.apache.commons.logging.LogFactory;
 public class ExecutorsThreadPoolDemo {
 	static Log log = LogFactory.getLog(ExecutorsThreadPoolDemo.class);
 
-	public static void main(String []agrs) throws InterruptedException, ExecutionException{
+	public static void main(String []agrs){
 		log.info("Main started");
 		ExecutorsThreadPoolDemo demo = new ExecutorsThreadPoolDemo();
 		demo.startRun();
 		log.info("Main ended");
 	}
 	
-	private void startRun() throws InterruptedException, ExecutionException{
+	private void startRun(){
 		List<Future<String>> futures = new ArrayList<>();
 		ExecutorService service = Executors.newFixedThreadPool(4);
 		for(int i = 0; i<5; i++){
 			futures.add(service.submit(new Worker("A"+i)));
 		}
-		//Èç¹û²»ÄÃ½á¹û£¬¾Í²»»á×èÈû
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(Future<String> future: futures){
-			log.info(future.get());
+			try {
+				log.info(future.get());
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			} catch (ExecutionException e) {
+				log.error(e.getStackTrace(), e);
+			}
 		}
 	}
 	
