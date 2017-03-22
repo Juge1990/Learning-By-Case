@@ -33,6 +33,7 @@ public class ForkJoinPoolDemo {
 		log.info(task.get());
 		log.info(System.currentTimeMillis() - start);
 		
+		
 
 	}
 

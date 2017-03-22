@@ -36,6 +36,7 @@ public class ExecutorsThreadPoolDemo {
 			} catch (ExecutionException e) {
 				log.error(e.getStackTrace(), e);
 			}
+			
 		}
 	}
 	

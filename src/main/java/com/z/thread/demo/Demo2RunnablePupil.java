@@ -11,6 +11,7 @@ public class Demo2RunnablePupil extends Student implements Runnable{
 	}
 	@Override
 	public void run() {
+		
 		try {
 		for(int i=1;i<=5;i++){
 			log.info(Thread.currentThread().getName() +" i can 1 fight "+i);
