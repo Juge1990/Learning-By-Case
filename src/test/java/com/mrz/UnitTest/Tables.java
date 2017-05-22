@@ -10,7 +10,6 @@ public final class Tables {
 			"student", new Column[] {
 					new Column("student_id", DataType.NUMERIC),
 					new Column("student_name", DataType.CHAR),
-					new Column("age", DataType.NUMERIC)
-			});
+					new Column("age", DataType.NUMERIC) });
 
 }

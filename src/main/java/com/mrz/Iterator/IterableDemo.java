@@ -5,6 +5,7 @@ package com.mrz.Iterator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +19,8 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 public class IterableDemo  {
+
+
 	public static void main(String[] agrs){
 		IterableDemo demo = new IterableDemo();
 		demo.Test();
@@ -40,12 +43,11 @@ public class IterableDemo  {
 		}
 		log.info(iterator2.next());
 	}
-	
 	public void TestForEach(){
 		Log log = LogFactory.getLog(IterableDemo.class);
 		List<String> list = Arrays.asList("A", "B", "C", "D");
 		list.forEach(new Consumer<String>(){
-
+			HashMap map;
 			@Override
 			public void accept(String t) {
 				log.info(t.toLowerCase());

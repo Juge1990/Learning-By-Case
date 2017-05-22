@@ -7,6 +7,7 @@ import org.dbunit.DataSourceBasedDBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.AfterClass;
 
 
 public abstract class DBTestBase extends DataSourceBasedDBTestCase {
@@ -31,6 +32,13 @@ public abstract class DBTestBase extends DataSourceBasedDBTestCase {
 
 	}
 	
+	@AfterClass
+	@Override
+	public void tearDown() throws Exception{
+		super.tearDown();
+		this.closeDataSource();
+	}
+	
 	private void setUpDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(System.getProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS));
@@ -45,7 +53,6 @@ public abstract class DBTestBase extends DataSourceBasedDBTestCase {
 
 	@Override
 	protected void setUpDatabaseConfig(DatabaseConfig config){
-		
 		super.setUpDatabaseConfig(config);
 	}
 	
